@@ -32,7 +32,9 @@ public class MainFragment extends Fragment implements  View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View result =  inflater.inflate(R.layout.fragment_main, container, false);
-        result.findViewById(R.id.fragment_main_button).setOnClickListener(this);
+        result.findViewById(R.id.fragment_main_button_happy).setOnClickListener(this);
+        result.findViewById(R.id.fragment_main_button_sad).setOnClickListener(this);
+        result.findViewById(R.id.fragment_main_button_horrible).setOnClickListener(this);
         return result;
     }
     public void onCreateCallBackToParent(){

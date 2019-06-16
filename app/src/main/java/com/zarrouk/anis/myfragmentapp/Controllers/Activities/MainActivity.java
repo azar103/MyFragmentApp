@@ -14,6 +14,8 @@ import com.zarrouk.anis.myfragmentapp.R;
 public class MainActivity extends AppCompatActivity  implements MainFragment.OnButtonClickedListener{
     private MainFragment mainFragment;
     private DetailFragment detailFragment;
+    //declare a buttonTag tracking
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +27,13 @@ public class MainActivity extends AppCompatActivity  implements MainFragment.OnB
 
     @Override
     public void onButtonClicked(View v) {
-        if(detailFragment == null ) {
-            startActivity(new Intent(MainActivity.this, DetailActivity.class));
+        int buttonTag = Integer.parseInt(v.getTag().toString());
+        if(detailFragment != null  && detailFragment.isVisible()) {
+            detailFragment.updateText(buttonTag);
+        }else{
+            Intent i = new Intent(this, DetailActivity.class);
+            i.putExtra(DetailActivity.BUTTON_TAG_EXTRA,buttonTag);
+            startActivity(i);
         }
     }
     private void configureAndShowMainFragment() {
