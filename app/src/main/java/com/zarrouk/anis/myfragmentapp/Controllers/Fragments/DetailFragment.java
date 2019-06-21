@@ -1,69 +1,60 @@
 package com.zarrouk.anis.myfragmentapp.Controllers.Fragments;
 
-
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.TextView;
 
 import com.zarrouk.anis.myfragmentapp.R;
 
+import butterknife.BindView;
+import icepick.State;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailFragment extends Fragment {
-    private TextView mDetailText;
-    private int buttonTag;
-    //declare a static varaible to identifiy key in bundle
-    public static final String  KEY_BUTTON_TAG = "com.zarrouk.anis.myfragmentapp.Controllers.Fragments.DetailFragmen.KEY_BUTTONTAG";
+public class DetailFragment extends BaseFragment {
 
+    @BindView(R.id.fragment_detail_text_view) TextView textView;
+    @State int buttonTag;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View result = inflater.inflate(R.layout.fragment_detail, container, false);
-        mDetailText = result.findViewById(R.id.activity_detail_text);
-        return result;
-    }
+    // --------------
+    // BASE METHODS
+    // --------------
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if(savedInstanceState != null){
-            int buttonTag = savedInstanceState.getInt(KEY_BUTTON_TAG, 0);
-            this.updateText(buttonTag);
-        }
-    }
+    protected BaseFragment newInstance() { return new DetailFragment(); }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    protected int getFragmentLayout() { return R.layout.fragment_detail; }
 
-        super.onSaveInstanceState(outState);
-        outState.putInt(KEY_BUTTON_TAG, buttonTag);
+    @Override
+    protected void configureDesign() { }
+
+    @Override
+    protected void updateDesign() {
+        this.updateTextView(this.buttonTag);
     }
 
-    public void updateText(int tag){
+    // --------------
+    // UPDATE UI
+    // --------------
+    //Update TextView depending on TAG's button
+    public void updateTextView(int tag){
+        //Save tag in ButtonTag variable
         this.buttonTag = tag;
         switch (tag){
             case 10:
-                mDetailText.setText("You are a very good programmer!");
+                this.textView.setText("You're a very good programmer !");
                 break;
             case 20:
-                mDetailText.setText("I do believe that Jon Snow is going to die in next season...");
+                this.textView.setText("I do believe that Jon Snow is going to die in next season...");
                 break;
             case 30:
-                mDetailText.setText("Maybe Game of Thrones next season will get back in 2040 ?");
+                this.textView.setText("Maybe Game of Thrones next season will get back in 2040 ?");
                 break;
             default:
                 break;
-
         }
-
     }
 
 }

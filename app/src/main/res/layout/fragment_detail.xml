@@ -7,7 +7,7 @@
     android:background="#BED4D6"
     tools:context=".Controllers.Fragments.DetailFragment">
   <TextView
-      android:id="@+id/activity_detail_text"
+      android:id="@+id/fragment_detail_text_view"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textColor="#FFF"

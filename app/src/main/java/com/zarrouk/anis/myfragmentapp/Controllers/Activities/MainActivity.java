@@ -3,13 +3,11 @@ package com.zarrouk.anis.myfragmentapp.Controllers.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-
 import com.zarrouk.anis.myfragmentapp.Controllers.Fragments.DetailFragment;
 import com.zarrouk.anis.myfragmentapp.Controllers.Fragments.MainFragment;
 import com.zarrouk.anis.myfragmentapp.R;
+
 
 public class MainActivity extends AppCompatActivity  implements MainFragment.OnButtonClickedListener{
     private MainFragment mainFragment;
@@ -24,12 +22,11 @@ public class MainActivity extends AppCompatActivity  implements MainFragment.OnB
         this.configureAndShowDetailFragment();
     }
 
-
     @Override
     public void onButtonClicked(View v) {
         int buttonTag = Integer.parseInt(v.getTag().toString());
         if(detailFragment != null  && detailFragment.isVisible()) {
-            detailFragment.updateText(buttonTag);
+            detailFragment.updateTextView(buttonTag);
         }else{
             Intent i = new Intent(this, DetailActivity.class);
             i.putExtra(DetailActivity.BUTTON_TAG_EXTRA,buttonTag);
